@@ -1,0 +1,11 @@
+.main-space{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.work-area{
+  width: 60%;
+  background-color: white;
+  height: 100vh;
+}

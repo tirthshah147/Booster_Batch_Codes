@@ -1,0 +1,5 @@
+----steps-----
+Step 1. Wrap your very first component in your component tree with {BrowserRouter}
+Step 2. define {Route} for your components, we will be using {Route} component
+Step 3. control the URL {NavLink, Link} components
+

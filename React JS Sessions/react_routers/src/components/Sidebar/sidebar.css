@@ -1,0 +1,28 @@
+.sidebar_block{
+  width: 300px;
+  background-color: #23084B;
+  height:100vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-shadow:1px 2px 6px grey;
+}
+
+.sidebar_item, .current_item{
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  background-color: #7117EB;
+  align-items: center;
+  color:white;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  cursor:pointer;
+}
+
+.current_item{
+  background-color: cornsilk;
+  color:black;
+}
