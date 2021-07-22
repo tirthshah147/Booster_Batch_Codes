@@ -16,8 +16,6 @@
 
 
 
-
-
 import React from "react";
 import courses from "../../data.json";
 import "./ItemDetails.css";
