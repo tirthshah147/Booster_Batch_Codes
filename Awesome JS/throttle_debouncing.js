@@ -1,5 +1,26 @@
 //throttling
 
+function throttle(func,wait){
+  let last = 0;
+  return function(...args){
+    const context = this;
+    const now = new Date().getTime();
+    if (now-last < wait) {
+      return;
+    }
+    last = now;
+    return func.apply(context,args);
+  }
+}
+
+let counter = 0;
+const getData = (event) => {
+  console.log("Fetching data...",counter++);
+  document.getElementById('text').innerHTML = event.target.value;
+  // console.log(event.target.value);
+}
+
+const betterFunction = throttle(getData,1000);
 
 
 
@@ -83,25 +104,25 @@
 
 //example of debouncing
 
-function debounce(func,wait){
-  let timeout;
-  return function(...args){  //here ...args is rest operator
-    const context = this;
-    console.log(args);
-    // console.log(context);
-    clearTimeout(timeout);
-    timeout = setTimeout(()=>func.apply(context,args),wait); //here ...args is spread operator
-  }
-}
+// function debounce(func,wait){
+//   let timeout;
+//   return function(...args){  //here ...args is rest operator
+//     const context = this;
+//     console.log(args);
+//     // console.log(context);
+//     clearTimeout(timeout);
+//     timeout = setTimeout(()=>func.apply(context,args),wait); //here ...args is spread operator
+//   }
+// }
 
-let counter = 0;
-const getData = (event) => {
-  console.log("Fetching data...",counter++);
-  document.getElementById('text').innerHTML = event.target.value;
-  // console.log(event.target.value);
-}
+// let counter = 0;
+// const getData = (event) => {
+//   console.log("Fetching data...",counter++);
+//   document.getElementById('text').innerHTML = event.target.value;
+//   // console.log(event.target.value);
+// }
 
-const betterFunction = debounce(getData,1000);
+// const betterFunction = debounce(getData,1000);
 
 
 
