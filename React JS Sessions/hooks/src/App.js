@@ -1,12 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import UseMemo from './components/UseMemo';
-import UseCallback from './components/UseCallback';
+import UseRef  from './components/UseRef';
+// import UseMemo from './components/UseMemo';
+// import UseCallback from './components/UseCallback';
 
 // import UserHook from './components/UserHook';
 // import CounterClass from './components/CounterClass';
 // import CounterHook from './components/CounterHook';
 // import {Route ,Switch} from 'react-router-dom';
+
 
 
 
@@ -22,7 +24,8 @@ function App() {
       <CounterHook/> */}
       {/* <UserHook/> */}
       {/* <UseMemo/> */}
-      <UseCallback/>
+      {/* <UseCallback/> */}
+      <UseRef/>
     </div>
   );
 }
