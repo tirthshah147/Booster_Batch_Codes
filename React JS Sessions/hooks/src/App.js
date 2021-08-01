@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import UseRef  from './components/UseRef';
+// import UseReducerEx1 from './components/UseReducerEx1';
+import UseReducerEx2 from './components/UseReducerEx2';
+// import UseRef  from './components/UseRef';
 // import UseMemo from './components/UseMemo';
 // import UseCallback from './components/UseCallback';
 
@@ -8,6 +10,7 @@ import UseRef  from './components/UseRef';
 // import CounterClass from './components/CounterClass';
 // import CounterHook from './components/CounterHook';
 // import {Route ,Switch} from 'react-router-dom';
+
 
 
 
@@ -25,7 +28,9 @@ function App() {
       {/* <UserHook/> */}
       {/* <UseMemo/> */}
       {/* <UseCallback/> */}
-      <UseRef/>
+      {/* <UseRef/> */}
+      {/* <UseReducerEx1/> */}
+      <UseReducerEx2/>
     </div>
   );
 }
