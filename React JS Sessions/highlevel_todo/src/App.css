@@ -1,0 +1,168 @@
+.todo-block{
+  display: flex;
+  width: 80%;
+  min-height: 500px;
+  /* background-color: black; */
+  justify-content: space-between;
+}
+
+.app-title{
+  width: 100%;
+  text-align: center;
+}
+
+.todo-subblock{
+  width: 45%;
+  height: auto;
+  /* background-color: blueviolet; */
+
+}
+
+.todo-card{
+  width: 100%;
+  height: 80px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.delete-symbol--small, .delete-symbol--large{
+  position: absolute;
+  right:10px;
+  top:5px;
+  font-weight: bold;
+
+}
+
+.delete-symbol--small{
+  font-size: 20px;
+  display: none;
+}
+
+.delete-symbol--large{
+  font-size: 30px;
+}
+
+.todo-title{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+
+}
+
+.todo-card:hover .delete-symbol{
+  display: block;
+}
+
+.todo-card:hover{
+  box-shadow: 1px 1px 7px rgba(0,0,0,0.5);
+}
+
+.popup-block{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.popup-card{
+  width: 60%;
+  height: 70%;
+  background-color: white;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  position: relative;
+  border-radius: 10px;
+
+}
+
+.popup-card .popup-details{
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(0%, -50%);
+  width: 90%;
+}
+
+.popup-details label{
+  font-size: 25px;
+}
+
+.popup-details input{
+  width: 70%;
+  height: 40px;
+  outline: none;
+  border:none;
+  border-bottom: 1px solid #999999;
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-indent: 10px;
+}
+
+.popup-details input:focus{
+  border-bottom: 3px solid greenyellow;
+}
+
+
+.popup-details textarea{
+  height:100px;
+  width: 80%;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.popup-details select{
+  height: 50px;
+  width: 200px;
+  font-size:20px;
+  margin-top: 5px;
+}
+
+.popup-details .popup-button{
+  width: 200px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: white;
+  border-style: solid;
+  border-color: greenyellow;
+  margin-top:30px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.popup-details .popup-button:hover{
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+ul li{
+  width: 60%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top:20px;
+}
+
+
+
+
+
+
