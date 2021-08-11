@@ -13,3 +13,4 @@ emitter.on('messageLogged',(arg) => {
 })
 
 emitter.log('message');
+
