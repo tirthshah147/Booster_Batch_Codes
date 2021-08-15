@@ -14,7 +14,7 @@ app.get('/api/courses/:id',(req,res) => {
   res.send(req.params.id);
 })
 
-app.get('/api/post/:year/:month',(req,res) => {
+app.get('/api/blog/:year/:month',(req,res) => {
   res.send(req.params);
 })
 
