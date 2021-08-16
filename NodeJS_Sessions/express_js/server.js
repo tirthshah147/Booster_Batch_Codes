@@ -1,3 +1,5 @@
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
 const Joi = require('joi');
 const morgan = require('morgan');
 const logger = require('./logger');
@@ -8,14 +10,33 @@ const coursesRoute = require('./routes/courses');
 
 const app = express();
 
+app.set('view engine','pug');
+app.set('views','./views');
+
+//common template engines!
+
+//pug
+//mustache
+//EJS
+
 app.use(express.json());        
 app.use(express.urlencoded({extended : true}));
 app.use(express.static('public'));
 app.use(helmet());
 // key1=value1&key2=value2 -> req.body = {key1 : value1, key2:value2}
 app.use(logger);
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
+
+if (app.get('env') === 'development') {
+  app.use(morgan('tiny'));
+  startupDebugger('Morgan is enabled....');
+  startupDebugger('Debugging startup code');
+}
+
+dbDebugger('Debugging my database');
 //routes
 app.use('/api/courses',coursesRoute);
 
@@ -24,6 +45,9 @@ app.use(function(req,res,next){
   next();
 })
 
+app.get('/',(req,res) => {
+  return res.render('index',{title:'My express App', message:"Hello Vikash!"});
+});
 
 
 // app.post('/api/trial/courses',(req,res) =>{
