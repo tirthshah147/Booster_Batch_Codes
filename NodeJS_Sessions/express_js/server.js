@@ -19,11 +19,13 @@ app.set('views','./views');
 //mustache
 //EJS
 
+// app.use(function(req,res,next))
 app.use(express.json());        
 app.use(express.urlencoded({extended : true}));
+// key1=value1&key2=value2 -> req.body = {key1 : value1, key2:value2}
 app.use(express.static('public'));
 app.use(helmet());
-// key1=value1&key2=value2 -> req.body = {key1 : value1, key2:value2}
+
 app.use(logger);
 // app.use(morgan('tiny'));
 
@@ -35,6 +37,8 @@ if (app.get('env') === 'development') {
   startupDebugger('Morgan is enabled....');
   startupDebugger('Debugging startup code');
 }
+// set DEBUG=app:startup on ternimal
+
 
 dbDebugger('Debugging my database');
 //routes
