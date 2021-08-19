@@ -10,11 +10,50 @@ mongoose.connect('mongodb://localhost/playground',{useNewUrlParser: true, useUni
 
 
 //step1. Create schema
+// const courseSchema = mongoose.Schema({
+//   name:String,
+//   author:String,
+//   tags:[String],
+//   price:Number,
+//   isPublished:Boolean
+// },{timestamps:true})
+
+//Validators
+
 const courseSchema = mongoose.Schema({
-  name:String,
+  name:{
+    type:String, 
+    required:true,
+    minlength:3,
+    maxlength:255,
+    // match:/pattern/
+  },
+  category:{
+    type:String,
+    required:true,
+    enum:['web','mobile','machine learning'],
+    lowercase:true,
+    trim:true
+  },
   author:String,
-  tags:[String],
-  price:Number,
+  tags:{
+    type:[String],
+    validate:{
+      validator:function(v){
+        return v && v.length > 0;
+      },
+      message: 'A course should have atleast one tag!'
+    }
+  },
+  date:{type:Date, default:Date.now},
+  price:{
+    type:Number,
+    required: function(){return this.isPublished},
+    min:100,
+    max:3000,
+    get : v => Math.round(v),
+    set : v => Math.round(v)
+  },
   isPublished:Boolean
 },{timestamps:true})
 
@@ -23,17 +62,23 @@ const Course = mongoose.model('Course',courseSchema); //courses
 
 async function createCourse(){
   const course = new Course({
-    name:"Node JS",
-    author:"Shatakshi Shah",
-    tags:['Web Development','Software Development','Backend'],
-    price:500,
-    isPublished:false
+    name:"Styled Component",
+    category:"WEB",
+    author:"Shatakshi Gupta",
+    tags:['Frontend'],
+    price:200.8,
+    isPublished:true
   })
 
-  const result = await course.save();
-
-  console.log(result);
-
+  try {
+    const result = await course.save();
+    console.log(result);
+  } catch (error) {
+    // console.log(error.errors);
+    for (key in error.errors) {
+      console.log(error.errors[key].message)
+    }
+  }
 }
 
 // createCourse();
@@ -58,8 +103,8 @@ async function getCourses(){
                         // .find({author:"Shatakshi",isPublished:false})
                         // .find({price:{$gte : 500, $lte : 2000}})
                         // .find({price:{$in : [500,10,10000]}})
-                        .find()
-                        .skip((pageNumber - 1) * pageSize)
+                        .find({_id:'611e8bc8035aaa297ced93fb'})
+                        // .skip((pageNumber - 1) * pageSize)
                         //Start with Tirth
                         // .find({author:/^Tirth/i})
 
@@ -71,14 +116,14 @@ async function getCourses(){
 
                         // .or([{author:"Shatakshi Shah"},{price:10000}])
                         // .and()
-                        .limit(pageSize)
+                        // .limit(pageSize)
                         // .sort({name:1})
                         // .count()
                         // .select({name:1,tags:1,author:1,price:1})
-  console.log(courses);
+  console.log(courses[0].price);
 }
 
-// getCourses();
+getCourses();
 
 async function updateCourse(id){
   //Approach: Query First
@@ -115,7 +160,7 @@ async function removeCourse(id){
   console.log(result);
 }
 
-removeCourse('611d36eb58a37b2da0536fcd');
+// removeCourse('611d36eb58a37b2da0536fcd');
 
 // Schema Types
 
