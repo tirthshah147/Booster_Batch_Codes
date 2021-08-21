@@ -1,5 +1,6 @@
 const express = require('express');
 const coursesRoute = require('./routes/courses');
+const customersRoute = require('./routes/customers');
 const mongoose = require('mongoose');
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 
 //routes
 app.use('/api/courses',coursesRoute);
+app.use('/api/customers',customersRoute);
 
 const port = process.env.PORT || 8080;
 // const port = 8080;
