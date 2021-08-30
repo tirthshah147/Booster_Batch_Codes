@@ -1,0 +1,19 @@
+:root{
+  --primaryColor:#f15025;
+}
+
+
+.global{
+  color:green;
+  text-transform: capitalize;
+}
+
+.third{
+  letter-spacing: 5px;
+  color:var(--primaryColor);
+}
+
+.second{
+  text-transform: uppercase;
+  color:var(--primaryColor);
+}

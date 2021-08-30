@@ -1,15 +1,60 @@
 const {Genre,validate} = require('../models/genre');
+const auth = require('../middlewares/auth');
+const admin = require('../middlewares/admin');
 const mongoose = require('mongoose');
 const express = require('express');
+const { User } = require('../models/user');
 const router = express.Router();
 
+// function asyncMiddlewareForErrors(handler) {
+//   return async (req,res,next) => {
+//     try{
+//       await handler(req,res);
+//     }catch(err){
+//       next(err);
+//     }
+//   }
+// }
+
+
+// router.get('/',asyncMiddlewareForErrors(async(req,res) => {
+//     const genres = await Genre.find().sort('name');
+//     res.send(genres);
+//   // try{
+//   //   const genres = await Genre.find().sort('name');
+//   //   res.send(genres);
+//   // }catch(err){
+//   //   // res.status(500).send('Something is failed!');
+//   //   next(err);
+//   // }
+  
+// }))
 
 router.get('/',async(req,res) => {
-  const genres = Genre.find().sort('name');
+  const genres = await Genre.find().sort('name');
   res.send(genres);
+// try{
+//   const genres = await Genre.find().sort('name');
+//   res.send(genres);
+// }catch(err){
+//   // res.status(500).send('Something is failed!');
+//   next(err);
+// }
+
 })
 
-router.post('/',async(req,res) => {
+router.get('/me',auth,async(req,res,next) => {
+    const user = await User.findById(req.user._id).select('-password');
+    res.send(user);
+ 
+  
+})
+
+router.post('/',[auth,admin],async(req,res) => {
+  // const token = req.header('x-auth-token');
+  // if (!token) return res.status(401).send('Access denied. No token present');
+  console.log(req.user);
+  console.log(req.body);
   const {error} = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 

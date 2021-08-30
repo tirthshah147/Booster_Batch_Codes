@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
+    "express-async-error": "0.0.2",
     "fawn": "^2.1.5",
     "joi": "^17.4.2",
     "joi-objectid": "^3.0.1",

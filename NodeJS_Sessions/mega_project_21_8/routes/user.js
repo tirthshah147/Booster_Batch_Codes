@@ -13,7 +13,7 @@ router.post('/',async(req,res) => {
   let user = await User.findOne({email: req.body.email});
   if(user) return res.status(400).send("User already registered!");
 
-  user = new User(_.pick(req.body, ['name','email','password']));
+  user = new User(_.pick(req.body, ['name','email','password','isAdmin']));
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password,salt);
   // user = new User({
@@ -34,6 +34,23 @@ router.post('/',async(req,res) => {
 
 
 module.exports = router;
+
+
+// {
+// 	"name":"Santanu",
+// 	"email":"santanu_mohanty@gmail.com",
+// 	"password":"santanumohanty147@",
+// 	"isAdmin":"false"
+// }
+
+// {
+// 	"name":"Dhritesh",
+// 	"email":"dhritesh_mohanty@gmail.com",
+// 	"password":"dhriteshmohanty147@",
+// 	"isAdmin":"true"
+// }
+
+
 
 
 
